@@ -1,4 +1,4 @@
-﻿; This scripts creates a radial menu / pie menu
+; This scripts creates a radial menu / pie menu
 ; The selected menu item is returned as a string.
 ; mbutton is used in this example to trigger the menu
 
@@ -14,16 +14,12 @@ mButton::
     GMenu := Radial_Menu()
 
     ; Settings for dark mode
-    GMenu.ColorBackGround := "252526"
-    GMenu.ColorLineBackGround := "454545"
-    GMenu.ColorSelected := "08395D"
-    GMenu.ColorLineSelected := "08395D"
-    GMenu.ColorText := "ffffff"
+    GMenu.SetMode("Dark")
 
     GMenu.SetSections("8")
-    GMenu.Add("Save", "Images/analysis_meas_distance16.gif", 1, (*)=> (MsgBox("ds")))
+    GMenu.Add("Save", "Images/analysis_meas_distance16.gif", 1, (*)=> (MsgBox("Callbacktest")))
     GMenu.Add("Save2", "Images/smt_flat_wall_mt.gif", 2)
-    GMenu.Add2("Save2special", "Images/analysis_meas_distance16.gif", 2)
+    GMenu.Add2("Save2special", "Images/analysis_meas_distance16.gif", 2, (*)=> (MsgBox("Callbacktest2")))
     GMenu.SetKey("mbutton")
     GMenu.SetKeySpecial("Ctrl")
     GMenu.Add("Save3", "", 3)
@@ -38,4 +34,3 @@ mButton::
     ; This Result string can be used in if else statements, in this demo i just use a message box.
     MsgBox(Result)
 }
-; return

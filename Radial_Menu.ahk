@@ -1,4 +1,4 @@
-﻿#Requires AutoHotkey v2.0-beta.3
+#Requires AutoHotkey v2.0-beta.3
 #Include Gdip_All.ahk
 Class Radial_Menu {
     __New() {
@@ -26,6 +26,31 @@ Class Radial_Menu {
     }
     SetKeySpecial(RM_Key2) {
         This.RM_Key2 := RM_Key2
+    }
+
+    SetMode(mode){
+        switch mode {
+            case "Dark":
+            {
+                This.ColorBackGround := "252526"
+                This.ColorLineBackGround := "454545"
+                This.ColorSelected := "08395D"
+                This.ColorLineSelected := "08395D"
+                This.ColorText := "ffffff"
+            }
+            case "Light":
+            {
+                This.ColorBackGround := "FCFCFC"
+                This.ColorLineBackGround := "C6DFFC"
+                This.ColorSelected := "C6DFFC"
+                This.ColorLineSelected := "F5E5D6"
+                This.ColorText := "000000"
+            }
+            default:
+            {
+                throw Error("The mode [" mode "] is not defined." )
+            }
+        }
     }
 
     Add(SectionName, SectionImg, ArcNr, CallBack:="") {

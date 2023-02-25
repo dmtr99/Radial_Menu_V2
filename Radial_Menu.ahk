@@ -16,6 +16,7 @@ Class Radial_Menu {
         This.ColorLineSelected := "F5E5D6"
         This.Radius := "100"
         This.ColorText := "000000"
+        This.ColorSelectedText := "000000"
     }
 
     SetSections(Sections) {
@@ -36,7 +37,8 @@ Class Radial_Menu {
                 This.ColorLineBackGround := "454545"
                 This.ColorSelected := "08395D"
                 This.ColorLineSelected := "08395D"
-                This.ColorText := "ffffff"
+                This.ColorText := "cccccc"
+                This.ColorSelectedText := "ffffff"
             }
             case "Light":
             {
@@ -45,6 +47,7 @@ Class Radial_Menu {
                 This.ColorSelected := "C6DFFC"
                 This.ColorLineSelected := "F5E5D6"
                 This.ColorText := "000000"
+                This.ColorSelectedText := "000000"
             }
             default:
             {
@@ -269,11 +272,13 @@ Class Radial_Menu {
                     if (Section.Name = "") {
                         continue
                     }
+                    SectionColorText := This.ColorText
                     If (A_Index = Section_Mouse) {
                         Gdip_FillPolygon(G, pBrushA, Section.Points)
                         Gdip_DrawLines(G, pPenA, Section.Points)
                         Gdip_FillPolygon(G, pBrushA, Section.PointsA)
                         Gdip_DrawLines(G, pPenA, Section.PointsA)
+                        SectionColorText := This.ColorSelectedText
                     } else {
                         Gdip_FillPolygon(G, pBrush, Section.Points)
                         Gdip_DrawLines(G, pPen, Section.Points)
@@ -283,8 +288,11 @@ Class Radial_Menu {
                     } else if HasProp(Section, "pBitmap"){
                         Gdip_DrawImage(G, Section.pBitmap, Section.X_Bitmap, Section.Y_Bitmap, 16, 16 * Section.bHeight / Section.bWidth, 0, 0, Section.bWidth, Section.bHeight)
                     }
-                    if !HasProp(Section, "pBitmap") and HasProp(Section, "Name") and Section.Name != "" {
-                        Gdip_TextToGraphics(G, Section.Name, "cff" This.ColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8, , 40, 40)
+
+                    if (GetKeyState(This.RM_Key2, "P") and !HasProp(Section, "pBitmap2") and HasProp(Section, "Name2") and Section.Name2 != "") {
+                        Gdip_TextToGraphics(G, Section.Name2, "cff" SectionColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8, , 40, 40)
+                    } else if (!HasProp(Section, "pBitmap") and HasProp(Section, "Name") and Section.Name != "") {
+                        Gdip_TextToGraphics(G, Section.Name, "cff" SectionColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8, , 40, 40)
                     }
                 }
 

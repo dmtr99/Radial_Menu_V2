@@ -196,7 +196,7 @@ Class Radial_Menu {
             }
             if (RM_KeyState = 0 and RM_KeyState_D = 1) {
                 Section_Mouse := RM_GetSection(This.Sections, R_2, X_Center, Y_Center)
-                SectName := HasProp(This.Sect.%Section_Mouse%, "Name") ? This.Sect.%Section_Mouse%.Name : ""
+                SectName := (This.Sect.HasProp(Section_Mouse) and HasProp(This.Sect.%Section_Mouse%, "Name")) ? This.Sect.%Section_Mouse%.Name : ""
                 if (Section_Mouse != 0) {
                     break
                 }

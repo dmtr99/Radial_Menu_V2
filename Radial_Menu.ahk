@@ -17,6 +17,7 @@ Class Radial_Menu {
         This.Radius := "100"
         This.ColorText := "000000"
         This.ColorSelectedText := "000000"
+        This.Font := "Arial"
     }
 
     SetSections(Sections) {
@@ -290,9 +291,9 @@ Class Radial_Menu {
                     }
 
                     if (GetKeyState(This.RM_Key2, "P") and !HasProp(Section, "pBitmap2") and HasProp(Section, "Name2") and Section.Name2 != "") {
-                        Gdip_TextToGraphics(G, Section.Name2, "cff" SectionColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8, , 40, 40)
+                        Gdip_TextToGraphics(G, Section.Name2, "cff" SectionColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8,This.Font , 40, 40)
                     } else if (!HasProp(Section, "pBitmap") and HasProp(Section, "Name") and Section.Name != "") {
-                        Gdip_TextToGraphics(G, Section.Name, "cff" SectionColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8, , 40, 40)
+                        Gdip_TextToGraphics(G, Section.Name, "cff" SectionColorText " vCenter x" This.Sect.%A_Index%.X_Bitmap -20 + 8 " y" This.Sect.%A_Index%.Y_Bitmap -20 + 8,This.Font , 40, 40)
                     }
                 }
 

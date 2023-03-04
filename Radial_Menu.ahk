@@ -41,6 +41,15 @@ Class Radial_Menu {
                 This.ColorText := "cccccc"
                 This.ColorSelectedText := "ffffff"
             }
+            case "Blue":
+            {
+                This.ColorBackGround := "17639A"
+                This.ColorLineBackGround := "17639A"
+                This.ColorSelected := "1C78B9"
+                This.ColorLineSelected := "1C78B9"
+                This.ColorText := "ffffff"
+                This.ColorSelectedText := "ffffff"
+            }
             case "Light":
             {
                 This.ColorBackGround := "FCFCFC"

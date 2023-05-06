@@ -181,7 +181,7 @@ Class Radial_Menu {
         pBrush := Gdip_BrushCreateSolid("0xFF" This.ColorBackGround)
         pBrushA := Gdip_BrushCreateSolid("0xFF" This.ColorSelected)
         pBrushC := Gdip_BrushCreateSolid("0X01" This.ColorBackGround)
-        pPen := Gdip_CreatePen("0xFF" This.ColorLineBackGround, 1)
+        pPen := Gdip_CreatePen("0x88" This.ColorLineBackGround, 1)
         pPenA := Gdip_CreatePen("0xD2" This.ColorLineSelected, 1)
         hdc := CreateCompatibleDC()
 
@@ -215,7 +215,14 @@ Class Radial_Menu {
             if (GetKeyState("LButton")) {
 
                 Section_Mouse := RM_GetSection(This.Sections, R_2, X_Center, Y_Center)
-                SectName := Section_Mouse = 0 ? "" : HasProp(This.Sect.%Section_Mouse%, "Name") ? This.Sect.%Section_Mouse%.Name: ""
+
+                if (HasProp(This, "RM_Key2") and GetKeyState(This.RM_Key2, "P") and SectName2 != "") {
+                    SectName := Section_Mouse = 0 ? "" : HasProp(This.Sect.%Section_Mouse%,"Name2") ? This.Sect.%Section_Mouse%.Name2 : ""
+                    SectCallBack := Section_Mouse = 0 ? "" : HasProp(This.Sect.%Section_Mouse%, "CallBack2") ? This.Sect.%Section_Mouse%.CallBack2 : ""
+                } else {
+                    SectName := Section_Mouse = 0 ? "" : HasProp(This.Sect.%Section_Mouse%, "Name") ? This.Sect.%Section_Mouse%.Name : ""
+                    SectCallBack := Section_Mouse = 0 ? "" : HasProp(This.Sect.%Section_Mouse%, "CallBack") ? This.Sect.%Section_Mouse%.CallBack : ""
+                }
                 break
             }
             if GetKeyState("Escape") {
